@@ -24,11 +24,16 @@ namespace YumyApp.Controllers
         {
             HomeVM home = new HomeVM
             {
-                Testimonials = _context.Testimonials.ToList()
+                Testimonials = _context.Testimonials.ToList(),
+                Meals = _context.Meals.ToList(),
+                Categories = _context.Categories.Include(x=>x.Meals)
+                .ThenInclude(x=>x.MealIngredients).ThenInclude(x=>x.Ingredient).ToList(),
             };
 
             return View(home);
         }
+
+
 
 
        

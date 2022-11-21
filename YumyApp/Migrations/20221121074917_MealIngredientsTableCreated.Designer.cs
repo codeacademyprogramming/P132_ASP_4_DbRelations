@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YumyApp.DAL;
 
 namespace YumyApp.Migrations
 {
     [DbContext(typeof(YummyDbContext))]
-    partial class YummyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221121074917_MealIngredientsTableCreated")]
+    partial class MealIngredientsTableCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

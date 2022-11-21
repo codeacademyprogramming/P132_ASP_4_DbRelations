@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20221121065448_PriceColumnTypechanged2InMeals.cs" />
+    <Compile Remove="Migrations\20221121065448_PriceColumnTypechanged2InMeals.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.31" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.31">
       <PrivateAssets>all</PrivateAssets>

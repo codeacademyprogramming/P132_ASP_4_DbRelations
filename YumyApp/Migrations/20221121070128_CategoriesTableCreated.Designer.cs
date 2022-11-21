@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YumyApp.DAL;
 
 namespace YumyApp.Migrations
 {
     [DbContext(typeof(YummyDbContext))]
-    partial class YummyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221121070128_CategoriesTableCreated")]
+    partial class CategoriesTableCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,23 +35,6 @@ namespace YumyApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("YumyApp.Models.Ingredient", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("YumyApp.Models.Meal", b =>
@@ -79,28 +64,6 @@ namespace YumyApp.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Meals");
-                });
-
-            modelBuilder.Entity("YumyApp.Models.MealIngredient", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("IngredientId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MealId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IngredientId");
-
-                    b.HasIndex("MealId");
-
-                    b.ToTable("MealIngredients");
                 });
 
             modelBuilder.Entity("YumyApp.Models.Testimonial", b =>
@@ -139,23 +102,8 @@ namespace YumyApp.Migrations
             modelBuilder.Entity("YumyApp.Models.Meal", b =>
                 {
                     b.HasOne("YumyApp.Models.Category", "Category")
-                        .WithMany("Meals")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("YumyApp.Models.MealIngredient", b =>
-                {
-                    b.HasOne("YumyApp.Models.Ingredient", "Ingredient")
-                        .WithMany()
-                        .HasForeignKey("IngredientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("YumyApp.Models.Meal", "Meal")
-                        .WithMany()
-                        .HasForeignKey("MealId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
